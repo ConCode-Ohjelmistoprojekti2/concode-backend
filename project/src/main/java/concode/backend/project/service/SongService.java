@@ -6,7 +6,6 @@ import java.time.ZoneId;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Objects;
-import java.util.Optional;
 import java.util.Random;
 
 import org.springframework.http.HttpStatus;
@@ -41,10 +40,6 @@ public class SongService {
         songs = Arrays.asList(songArray);
     }
 
-    public Song getRandomSong() {
-        return songs.get(random.nextInt(songs.size()));
-    }
-
     public ChallengeResponse getRandomChallenge() {
         Song song = getRandomSong();
         return toChallengeResponse("random", null, song);
@@ -52,15 +47,13 @@ public class SongService {
 
     public ChallengeResponse getDailyChallenge() {
         LocalDate today = LocalDate.now(DAILY_CHALLENGE_ZONE);
-        int songIndex = Math.floorMod(today.toEpochDay(), songs.size());
-        Song song = songs.get(songIndex);
+        Song song = getDailySong(today);
 
         return toChallengeResponse("daily", today.toString(), song);
     }
 
     public GuessResponse checkGuess(GuessRequest guessRequest) {
-        Song song = findByYoutubeVideoId(guessRequest.getYoutubeVideoId())
-                .orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND, "Unknown YouTube video id"));
+        Song song = findByYoutubeVideoId(guessRequest.getYoutubeVideoId());
 
         boolean correctTitle = normalize(song.getTitle()).equals(normalize(guessRequest.getTitleGuess()));
         boolean correctArtist = normalize(song.getArtist()).equals(normalize(guessRequest.getArtistGuess()));
@@ -75,10 +68,24 @@ public class SongService {
         return new ChallengeResponse(type, date, song.getYoutubeVideoId());
     }
 
-    private Optional<Song> findByYoutubeVideoId(String youtubeVideoId) {
-        return songs.stream()
-                .filter(song -> song.getYoutubeVideoId().equals(youtubeVideoId))
-                .findFirst();
+    private Song getRandomSong() {
+        int songIndex = random.nextInt(songs.size());
+        return songs.get(songIndex);
+    }
+
+    private Song getDailySong(LocalDate date) {
+        int songIndex = Math.floorMod(date.toEpochDay(), songs.size());
+        return songs.get(songIndex);
+    }
+
+    private Song findByYoutubeVideoId(String youtubeVideoId) {
+        for (Song song : songs) {
+            if (song.getYoutubeVideoId().equals(youtubeVideoId)) {
+                return song;
+            }
+        }
+
+        throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Unknown YouTube video id");
     }
 
     private String normalize(String value) {
