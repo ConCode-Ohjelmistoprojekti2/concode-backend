@@ -5,7 +5,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import concode.backend.project.model.Song;
+import concode.backend.project.dto.ChallengeResponse;
 import concode.backend.project.service.SongService;
 
 @RestController
@@ -20,7 +20,7 @@ public class SongController {
     }
 
     @GetMapping("/random")
-    public Song getRandomSong() {
-        return songService.getRandomSong();
+    public ChallengeResponse getRandomSong() {
+        return songService.getRandomChallenge();
     }
 }
