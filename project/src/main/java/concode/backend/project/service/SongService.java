@@ -57,9 +57,9 @@ public class SongService {
 
         boolean correctTitle = normalize(song.getTitle()).equals(normalize(guessRequest.getTitleGuess()));
         boolean correctArtist = normalize(song.getArtist()).equals(normalize(guessRequest.getArtistGuess()));
-        AnswerResponse answer = correctTitle && correctArtist
-                ? new AnswerResponse(song.getTitle(), song.getArtist())
-                : null;
+        
+        AnswerResponse answer =
+        new AnswerResponse(song.getTitle(), song.getArtist());
 
         return new GuessResponse(correctTitle, correctArtist, answer);
     }
