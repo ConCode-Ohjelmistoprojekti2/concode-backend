@@ -33,5 +33,95 @@
     "title": "Take On Me",
     "artist": "a-ha",
     "youtubeVideoId": "djV11Xbc914"
+  },
+  {
+    "title": "Thriller",
+    "artist": "Michael Jackson",
+    "youtubeVideoId": "sOnqjkJTMaA"
+  },
+  {
+    "title": "Bohemian Rhapsody",
+    "artist": "Queen",
+    "youtubeVideoId": "fJ9rUzIMcZQ"
+  },
+  {
+    "title": "Smells Like Teen Spirit",
+    "artist": "Nirvana",
+    "youtubeVideoId": "hTWKbfoikeg"
+  },
+  {
+    "title": "Bad Romance",
+    "artist": "Lady Gaga",
+    "youtubeVideoId": "qrO4YZeyl0I"
+  },
+  {
+    "title": "Single Ladies",
+    "artist": "Beyoncé",
+    "youtubeVideoId": "4m1EFMoRFvY"
+  },
+  {
+    "title": "Toxic",
+    "artist": "Britney Spears",
+    "youtubeVideoId": "LOZuxwVk7TU"
+  },
+  {
+    "title": "Sledgehammer",
+    "artist": "Peter Gabriel",
+    "youtubeVideoId": "OJWJE0x7T4Q"
+  },
+  {
+    "title": "Virtual Insanity",
+    "artist": "Jamiroquai",
+    "youtubeVideoId": "4JkIs37a2JE"
+  },
+  {
+    "title": "Despacito",
+    "artist": "Luis Fonsi",
+    "youtubeVideoId": "kJQP7kiw5Fk"
+  },
+  {
+    "title": "Blank Space",
+    "artist": "Taylor Swift",
+    "youtubeVideoId": "e-ORhEE9VVg"
+  },
+  {
+    "title": "Uptown Funk",
+    "artist": "Mark Ronson",
+    "youtubeVideoId": "OPf0YbXqDm0"
+  },
+  {
+    "title": "Counting Stars",
+    "artist": "OneRepublic",
+    "youtubeVideoId": "hT_nvWreIhg"
+  },
+  {
+    "title": "Roar",
+    "artist": "Katy Perry",
+    "youtubeVideoId": "CevxZvSJLk8"
+  },
+  {
+    "title": "Wrecking Ball",
+    "artist": "Miley Cyrus",
+    "youtubeVideoId": "My2FRPA3Gf8"
+  },
+  {
+    "title": "Like a Virgin",
+    "artist": "Madonna",
+    "youtubeVideoId": "s__rX_WL100"
+  },
+  {
+    "title": "This Is America",
+    "artist": "Childish Gambino",
+    "youtubeVideoId": "VYOjWnS4cMY"
+  },
+  {
+    "title": "Chandelier",
+    "artist": "Sia",
+    "youtubeVideoId": "2vjPBrBU-TM"
+  },
+  {
+    "title": "November Rain",
+    "artist": "Guns N' Roses",
+    "youtubeVideoId": "8SbUC-UaAxE"
   }
 ]
