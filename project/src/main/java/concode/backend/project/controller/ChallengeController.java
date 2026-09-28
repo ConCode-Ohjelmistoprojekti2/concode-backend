@@ -15,7 +15,7 @@ import jakarta.validation.Valid;
 
 @RestController
 @RequestMapping("/api/challenges")
-@CrossOrigin(origins = {"http://localhost:5173", "https://concode-ohjelmistoprojekti2.github.io"})
+@CrossOrigin(origins = "*")
 public class ChallengeController {
 
     private final SongService songService;
