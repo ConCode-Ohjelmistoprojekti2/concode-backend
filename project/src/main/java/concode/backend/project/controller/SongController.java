@@ -10,7 +10,7 @@ import concode.backend.project.service.SongService;
 
 @RestController
 @RequestMapping("/api/songs")
-@CrossOrigin(origins = "http://localhost:5173")
+@CrossOrigin(origins = {"http://localhost:5173", "https://concode-ohjelmistoprojekti2.github.io"})
 public class SongController {
 
     private final SongService songService;
