@@ -1,4 +1,6 @@
+
  # Music Video Guessing Game
+[![Java CI with Maven](https://github.com/ConCode-Ohjelmistoprojekti2/concode-backend/actions/workflows/ci.yml/badge.svg?branch=main)](https://github.com/ConCode-Ohjelmistoprojekti2/concode-backend/actions/workflows/ci.yml)
 
 ## Project idea
 
