@@ -2,126 +2,337 @@
   {
     "title": "Never Gonna Give You Up",
     "artist": "Rick Astley",
-    "youtubeVideoId": "dQw4w9WgXcQ"
+    "youtubeVideoId": "dQw4w9WgXcQ",
+    "releaseYear": 1987,
+    "genre": "Pop"
   },
   {
     "title": "New Way Home",
     "artist": "Isac Elliot",
-    "youtubeVideoId": "H6Ykor-8MAM"
+    "youtubeVideoId": "H6Ykor-8MAM",
+    "releaseYear": 2013,
+    "genre": "Pop"
   },
   {
     "title": "Sandstorm",
     "artist": "Darude",
-    "youtubeVideoId": "erb4n8PW2qw"
+    "youtubeVideoId": "erb4n8PW2qw",
+    "releaseYear": 1999,
+    "genre": "Electronic"
   },
   {
     "title": "Freestyler",
     "artist": "Bomfunk MC's",
-    "youtubeVideoId": "ymNFyxvIdaM"
+    "youtubeVideoId": "ymNFyxvIdaM",
+    "releaseYear": 1999,
+    "genre": "Electronic"
   },
   {
     "title": "Wish I Had An Angel",
     "artist": "Nightwish",
-    "youtubeVideoId": "ueiOqaSvHp0"
+    "youtubeVideoId": "ueiOqaSvHp0",
+    "releaseYear": 2004,
+    "genre": "Symphonic Metal"
   },
   {
     "title": "Gangnam Style",
     "artist": "PSY",
-    "youtubeVideoId": "9bZkp7q19f0"
+    "youtubeVideoId": "9bZkp7q19f0",
+    "releaseYear": 2012,
+    "genre": "K-Pop"
   },
   {
     "title": "Take On Me",
     "artist": "a-ha",
-    "youtubeVideoId": "djV11Xbc914"
+    "youtubeVideoId": "djV11Xbc914",
+    "releaseYear": 1985,
+    "genre": "Synth-Pop"
   },
   {
-    "title": "Thriller",
+    "title": "Billie Jean",
     "artist": "Michael Jackson",
-    "youtubeVideoId": "sOnqjkJTMaA"
+    "youtubeVideoId": "Zi_XLOBDo_Y",
+    "releaseYear": 1982,
+    "genre": "Pop"
   },
   {
     "title": "Bohemian Rhapsody",
     "artist": "Queen",
-    "youtubeVideoId": "fJ9rUzIMcZQ"
+    "youtubeVideoId": "fJ9rUzIMcZQ",
+    "releaseYear": 1975,
+    "genre": "Rock"
   },
   {
     "title": "Smells Like Teen Spirit",
     "artist": "Nirvana",
-    "youtubeVideoId": "hTWKbfoikeg"
+    "youtubeVideoId": "hTWKbfoikeg",
+    "releaseYear": 1991,
+    "genre": "Grunge"
   },
   {
     "title": "Bad Romance",
     "artist": "Lady Gaga",
-    "youtubeVideoId": "qrO4YZeyl0I"
+    "youtubeVideoId": "qrO4YZeyl0I",
+    "releaseYear": 2009,
+    "genre": "Pop"
   },
   {
     "title": "Single Ladies",
     "artist": "Beyoncé",
-    "youtubeVideoId": "4m1EFMoRFvY"
+    "youtubeVideoId": "4m1EFMoRFvY",
+    "releaseYear": 2008,
+    "genre": "Pop"
   },
   {
     "title": "Toxic",
     "artist": "Britney Spears",
-    "youtubeVideoId": "LOZuxwVk7TU"
+    "youtubeVideoId": "LOZuxwVk7TU",
+    "releaseYear": 2003,
+    "genre": "Pop"
   },
   {
-    "title": "Sledgehammer",
-    "artist": "Peter Gabriel",
-    "youtubeVideoId": "OJWJE0x7T4Q"
+    "title": "Beat It",
+    "artist": "Michael Jackson",
+    "youtubeVideoId": "oRdxUFDoQe0",
+    "releaseYear": 1982,
+    "genre": "Pop Rock"
   },
   {
     "title": "Virtual Insanity",
     "artist": "Jamiroquai",
-    "youtubeVideoId": "4JkIs37a2JE"
+    "youtubeVideoId": "4JkIs37a2JE",
+    "releaseYear": 1996,
+    "genre": "Funk"
   },
   {
     "title": "Despacito",
     "artist": "Luis Fonsi",
-    "youtubeVideoId": "kJQP7kiw5Fk"
+    "youtubeVideoId": "kJQP7kiw5Fk",
+    "releaseYear": 2017,
+    "genre": "Reggaeton"
   },
   {
     "title": "Blank Space",
     "artist": "Taylor Swift",
-    "youtubeVideoId": "e-ORhEE9VVg"
+    "youtubeVideoId": "e-ORhEE9VVg",
+    "releaseYear": 2014,
+    "genre": "Pop"
   },
   {
     "title": "Uptown Funk",
     "artist": "Mark Ronson",
-    "youtubeVideoId": "OPf0YbXqDm0"
+    "youtubeVideoId": "OPf0YbXqDm0",
+    "releaseYear": 2014,
+    "genre": "Funk"
   },
   {
     "title": "Counting Stars",
     "artist": "OneRepublic",
-    "youtubeVideoId": "hT_nvWreIhg"
+    "youtubeVideoId": "hT_nvWreIhg",
+    "releaseYear": 2013,
+    "genre": "Pop Rock"
   },
   {
     "title": "Roar",
     "artist": "Katy Perry",
-    "youtubeVideoId": "CevxZvSJLk8"
+    "youtubeVideoId": "CevxZvSJLk8",
+    "releaseYear": 2013,
+    "genre": "Pop"
   },
   {
     "title": "Wrecking Ball",
     "artist": "Miley Cyrus",
-    "youtubeVideoId": "My2FRPA3Gf8"
+    "youtubeVideoId": "My2FRPA3Gf8",
+    "releaseYear": 2013,
+    "genre": "Pop"
   },
   {
     "title": "Like a Virgin",
     "artist": "Madonna",
-    "youtubeVideoId": "s__rX_WL100"
+    "youtubeVideoId": "s__rX_WL100",
+    "releaseYear": 1984,
+    "genre": "Pop"
   },
   {
     "title": "This Is America",
     "artist": "Childish Gambino",
-    "youtubeVideoId": "VYOjWnS4cMY"
+    "youtubeVideoId": "VYOjWnS4cMY",
+    "releaseYear": 2018,
+    "genre": "Hip Hop"
   },
   {
     "title": "Chandelier",
     "artist": "Sia",
-    "youtubeVideoId": "2vjPBrBU-TM"
+    "youtubeVideoId": "2vjPBrBU-TM",
+    "releaseYear": 2014,
+    "genre": "Pop"
   },
   {
     "title": "November Rain",
     "artist": "Guns N' Roses",
-    "youtubeVideoId": "8SbUC-UaAxE"
+    "youtubeVideoId": "8SbUC-UaAxE",
+    "releaseYear": 1991,
+    "genre": "Hard Rock"
+  },
+  {
+    "title": "Wonderwall",
+    "artist": "Oasis",
+    "youtubeVideoId": "bx1Bh8ZvH84",
+    "releaseYear": 1995,
+    "genre": "Britpop"
+  },
+  {
+    "title": "Creep",
+    "artist": "Radiohead",
+    "youtubeVideoId": "XFkzRNyygfk",
+    "releaseYear": 1992,
+    "genre": "Alternative Rock"
+  },
+  {
+    "title": "My Heart Will Go On",
+    "artist": "Celine Dion",
+    "youtubeVideoId": "3gK_2XdjOdY",
+    "releaseYear": 1997,
+    "genre": "Pop"
+  },
+  {
+    "title": "I Want It That Way",
+    "artist": "Backstreet Boys",
+    "youtubeVideoId": "4fndeDfaWCg",
+    "releaseYear": 1999,
+    "genre": "Pop"
+  },
+  {
+    "title": "Baby One More Time",
+    "artist": "Britney Spears",
+    "youtubeVideoId": "C-u5WLJ9Yk4",
+    "releaseYear": 1998,
+    "genre": "Pop"
+  },
+  {
+    "title": "Believe",
+    "artist": "Cher",
+    "youtubeVideoId": "nZXRV4MezEw",
+    "releaseYear": 1998,
+    "genre": "Pop"
+  },
+  {
+    "title": "Livin' la Vida Loca",
+    "artist": "Ricky Martin",
+    "youtubeVideoId": "p47fEXGabaY",
+    "releaseYear": 1999,
+    "genre": "Latin Pop"
+  },
+  {
+    "title": "What Is Love",
+    "artist": "Haddaway",
+    "youtubeVideoId": "HEXWRTEbj1I",
+    "releaseYear": 1993,
+    "genre": "Eurodance"
+  },
+  {
+    "title": "Wannabe",
+    "artist": "Spice Girls",
+    "youtubeVideoId": "gJLIiF15wjQ",
+    "releaseYear": 1996,
+    "genre": "Pop"
+  },
+  {
+    "title": "I Will Always Love You",
+    "artist": "Whitney Houston",
+    "youtubeVideoId": "3JWTaaS7LdU",
+    "releaseYear": 1992,
+    "genre": "Pop"
+  },
+  {
+    "title": "Under the Bridge",
+    "artist": "Red Hot Chili Peppers",
+    "youtubeVideoId": "GLvohMXgcBo",
+    "releaseYear": 1991,
+    "genre": "Alternative Rock"
+  },
+  {
+    "title": "Californication",
+    "artist": "Red Hot Chili Peppers",
+    "youtubeVideoId": "YlUKcNNmywk",
+    "releaseYear": 1999,
+    "genre": "Alternative Rock"
+  },
+  {
+    "title": "In the End",
+    "artist": "Linkin Park",
+    "youtubeVideoId": "eVTXPUF4Oz4",
+    "releaseYear": 2000,
+    "genre": "Nu Metal"
+  },
+  {
+    "title": "Poker Face",
+    "artist": "Lady Gaga",
+    "youtubeVideoId": "bESGLojNYSo",
+    "releaseYear": 2008,
+    "genre": "Pop"
+  },
+  {
+    "title": "Firework",
+    "artist": "Katy Perry",
+    "youtubeVideoId": "QGJuMBdaqIw",
+    "releaseYear": 2010,
+    "genre": "Pop"
+  },
+  {
+    "title": "Rolling in the Deep",
+    "artist": "Adele",
+    "youtubeVideoId": "rYEDA3JcQqw",
+    "releaseYear": 2010,
+    "genre": "Soul"
+  },
+  {
+    "title": "Party Rock Anthem",
+    "artist": "LMFAO",
+    "youtubeVideoId": "KQ6zr6kCPj8",
+    "releaseYear": 2011,
+    "genre": "Electropop"
+  },
+  {
+    "title": "Get Lucky",
+    "artist": "Daft Punk",
+    "youtubeVideoId": "5NV6Rdv1a3I",
+    "releaseYear": 2013,
+    "genre": "Disco"
+  },
+  {
+    "title": "Shape of You",
+    "artist": "Ed Sheeran",
+    "youtubeVideoId": "JGwWNGJdvx8",
+    "releaseYear": 2017,
+    "genre": "Pop"
+  },
+  {
+    "title": "Havana",
+    "artist": "Camila Cabello",
+    "youtubeVideoId": "BQ0mxQXmLsk",
+    "releaseYear": 2017,
+    "genre": "Latin Pop"
+  },
+  {
+    "title": "Fun, Fun, Fun",
+    "artist": "Pharrell Williams",
+    "youtubeVideoId": "tWmK5ZZM124",
+    "releaseYear": 2017,
+    "genre": "Pop"
+  },
+  {
+    "title": "Life Is a Highway",
+    "artist": "Rascal Flatts",
+    "youtubeVideoId": "5tXh_MfrMe0",
+    "releaseYear": 2006,
+    "genre": "Country Rock"
+  },
+  {
+    "title": "Umbrella",
+    "artist": "Rihanna",
+    "youtubeVideoId": "CvBfHwUxHIk",
+    "releaseYear": 2007,
+    "genre": "Pop"
   }
 ]
