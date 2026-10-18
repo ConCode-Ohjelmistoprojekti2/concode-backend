@@ -37,16 +37,37 @@ After the MVP is completed, possible features include:
 
 ## Technologies
 
-Planned technologies include:
+The backend uses Java 21 and Spring Boot to provide a REST API. Song data is currently stored locally in a JSON file, so no separate database is used. OpenAPI/Swagger provides API documentation, and YouTube videos are used by the frontend for gameplay.
 
-* Frontend
-* Backend / REST API
-* Database
-* YouTube Data API
-* YouTube IFrame Player API
-* (Supabase)
+## Running the application
 
-The YouTube IFrame Player API will be used to embed and control music videos inside the game.
+From the `project` directory, start the backend with:
+
+```bash
+./mvnw spring-boot:run
+```
+
+The application starts on `http://localhost:8080`.
+
+## Tests
+
+Tests use JUnit and Spring's MockMvc. They check that daily and random challenges contain the expected data, that correct guesses are accepted, that the random-challenge endpoint returns the expected JSON, and that the Spring application context starts.
+
+Run all tests from the `project` directory:
+
+```bash
+./mvnw test
+```
+
+## Deployment
+
+The frontend is deployed on Render and connected to this backend: [concode-frontend.onrender.com](https://concode-frontend.onrender.com). The backend can also be deployed as a Docker container using the included `project/Dockerfile`; it exposes port 8080.
+
+```bash
+cd project
+docker build -t music-video-game-backend .
+docker run -p 8080:8080 music-video-game-backend
+```
 
 ## Goal
 
