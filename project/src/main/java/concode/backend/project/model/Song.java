@@ -5,6 +5,8 @@ public class Song {
     private String title;
     private String artist;
     private String youtubeVideoId;
+    private Integer releaseYear;
+    private String genre;
 
     public Song() {
     }
@@ -37,5 +39,21 @@ public class Song {
 
     public void setYoutubeVideoId(String youtubeVideoId) {
         this.youtubeVideoId = youtubeVideoId;
+    }
+
+    public Integer getReleaseYear() {
+        return releaseYear;
+    }
+
+    public void setReleaseYear(Integer releaseYear) {
+        this.releaseYear = releaseYear;
+    }
+
+    public String getGenre() {
+        return genre;
+    }
+
+    public void setGenre(String genre) {
+        this.genre = genre;
     }
 }

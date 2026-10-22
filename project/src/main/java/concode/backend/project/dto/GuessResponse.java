@@ -4,16 +4,21 @@ public class GuessResponse {
 
     private boolean correctTitle;
     private boolean correctArtist;
+    private boolean correctYear;
+    private boolean correctGenre;
     private boolean complete;
     private AnswerResponse answer;
 
     public GuessResponse() {
     }
 
-    public GuessResponse(boolean correctTitle, boolean correctArtist, AnswerResponse answer) {
+    public GuessResponse(boolean correctTitle, boolean correctArtist, boolean correctYear,
+            boolean correctGenre, AnswerResponse answer) {
         this.correctTitle = correctTitle;
         this.correctArtist = correctArtist;
-        this.complete = correctTitle && correctArtist;
+        this.correctYear = correctYear;
+        this.correctGenre = correctGenre;
+        this.complete = correctTitle && correctArtist && correctYear && correctGenre;
         this.answer = answer;
     }
 
@@ -31,6 +36,22 @@ public class GuessResponse {
 
     public void setCorrectArtist(boolean correctArtist) {
         this.correctArtist = correctArtist;
+    }
+
+    public boolean isCorrectYear() {
+        return correctYear;
+    }
+
+    public void setCorrectYear(boolean correctYear) {
+        this.correctYear = correctYear;
+    }
+
+    public boolean isCorrectGenre() {
+        return correctGenre;
+    }
+
+    public void setCorrectGenre(boolean correctGenre) {
+        this.correctGenre = correctGenre;
     }
 
     public boolean isComplete() {
@@ -53,13 +74,17 @@ public class GuessResponse {
 
         private String title;
         private String artist;
+        private Integer year;
+        private String genre;
 
         public AnswerResponse() {
         }
 
-        public AnswerResponse(String title, String artist) {
+        public AnswerResponse(String title, String artist, Integer year, String genre) {
             this.title = title;
             this.artist = artist;
+            this.year = year;
+            this.genre = genre;
         }
 
         public String getTitle() {
@@ -76,6 +101,22 @@ public class GuessResponse {
 
         public void setArtist(String artist) {
             this.artist = artist;
+        }
+
+        public Integer getYear() {
+            return year;
+        }
+
+        public void setYear(Integer year) {
+            this.year = year;
+        }
+
+        public String getGenre() {
+            return genre;
+        }
+
+        public void setGenre(String genre) {
+            this.genre = genre;
         }
     }
 }

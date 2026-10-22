@@ -45,12 +45,18 @@ class SongServiceTest {
         GuessRequest request = new GuessRequest(
                 "dQw4w9WgXcQ",
                 "Never Gonna Give You Up",
-                "Rick Astley");
+                "Rick Astley",
+                1987,
+                "Pop");
 
         GuessResponse response = songService.checkGuess(request);
 
         assertTrue(response.isCorrectTitle());
         assertTrue(response.isCorrectArtist());
+        assertTrue(response.isCorrectYear());
+        assertTrue(response.isCorrectGenre());
         assertTrue(response.isComplete());
+        assertEquals(1987, response.getAnswer().getYear());
+        assertEquals("Pop", response.getAnswer().getGenre());
     }
 }

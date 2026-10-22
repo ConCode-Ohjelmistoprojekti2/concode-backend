@@ -57,11 +57,13 @@ public class SongService {
 
         boolean correctTitle = normalize(song.getTitle()).equals(normalize(guessRequest.getTitleGuess()));
         boolean correctArtist = normalize(song.getArtist()).equals(normalize(guessRequest.getArtistGuess()));
+        boolean correctYear = Objects.equals(song.getReleaseYear(), guessRequest.getYearGuess());
+        boolean correctGenre = normalize(song.getGenre()).equals(normalize(guessRequest.getGenreGuess()));
         
         AnswerResponse answer =
-        new AnswerResponse(song.getTitle(), song.getArtist());
+        new AnswerResponse(song.getTitle(), song.getArtist(), song.getReleaseYear(), song.getGenre());
 
-        return new GuessResponse(correctTitle, correctArtist, answer);
+        return new GuessResponse(correctTitle, correctArtist, correctYear, correctGenre, answer);
     }
 
     private ChallengeResponse toChallengeResponse(String type, String date, Song song) {
