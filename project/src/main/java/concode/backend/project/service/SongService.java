@@ -1,43 +1,33 @@
 package concode.backend.project.service;
 
-import java.io.InputStream;
 import java.time.LocalDate;
 import java.time.ZoneId;
-import java.util.Arrays;
-import java.util.List;
-import java.util.Objects;
 import java.util.Random;
 
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Sort;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
 import org.springframework.web.server.ResponseStatusException;
-
-import tools.jackson.databind.ObjectMapper;
 
 import concode.backend.project.dto.ChallengeResponse;
 import concode.backend.project.dto.GuessRequest;
 import concode.backend.project.dto.GuessResponse;
 import concode.backend.project.dto.GuessResponse.AnswerResponse;
 import concode.backend.project.model.Song;
+import concode.backend.project.repository.SongRepository;
 
 @Service
 public class SongService {
 
     private static final ZoneId DAILY_CHALLENGE_ZONE = ZoneId.of("Europe/Helsinki");
 
-    private final List<Song> songs;
+    private final SongRepository songRepository;
     private final Random random = new Random();
 
-    public SongService(ObjectMapper objectMapper) throws Exception {
-        InputStream inputStream =
-                getClass().getResourceAsStream("/videos.json");
+    public SongService(SongRepository songRepository) {
+        this.songRepository = songRepository;
 
-        Objects.requireNonNull(inputStream, "videos.json was not found in resources");
-
-        Song[] songArray =
-                objectMapper.readValue(inputStream, Song[].class);
-
-        songs = Arrays.asList(songArray);
     }
 
     public ChallengeResponse getRandomChallenge() {
@@ -57,35 +47,50 @@ public class SongService {
 
         boolean correctTitle = normalize(song.getTitle()).equals(normalize(guessRequest.getTitleGuess()));
         boolean correctArtist = normalize(song.getArtist()).equals(normalize(guessRequest.getArtistGuess()));
-        
-        AnswerResponse answer =
-        new AnswerResponse(song.getTitle(), song.getArtist());
+        boolean correctGenre = normalize(song.getGenre()).equals(normalize(guessRequest.getGenreGuess()));
+        boolean correctReleaseYear = song.getReleaseYear() != null
+                && song.getReleaseYear().equals(guessRequest.getReleaseYear());
 
-        return new GuessResponse(correctTitle, correctArtist, answer);
+        AnswerResponse answer = new AnswerResponse(song.getTitle(), song.getArtist());
+
+        return new GuessResponse(correctTitle, correctArtist, correctGenre, correctReleaseYear, answer);
     }
 
     private ChallengeResponse toChallengeResponse(String type, String date, Song song) {
-        return new ChallengeResponse(type, date, song.getYoutubeVideoId());
+        return new ChallengeResponse(type, date, song.getYoutubeVideoId(),
+                song.getGenre(),
+                song.getReleaseYear());
     }
 
     private Song getRandomSong() {
-        int songIndex = random.nextInt(songs.size());
-        return songs.get(songIndex);
+        int songIndex = random.nextInt(getSongCount());
+        return getSongAt(songIndex);
     }
 
     private Song getDailySong(LocalDate date) {
-        int songIndex = Math.floorMod(date.toEpochDay(), songs.size());
-        return songs.get(songIndex);
+        int songIndex = (int) Math.floorMod(date.toEpochDay(), (long) getSongCount());
+        return getSongAt(songIndex);
+    }
+
+    private int getSongCount() {
+        long count = songRepository.count();
+
+        if (count == 0) {
+            throw new ResponseStatusException(HttpStatus.SERVICE_UNAVAILABLE, "No songs in database");
+        }
+
+        return (int) count;
+    }
+
+    private Song getSongAt(int index) {
+        return songRepository.findAll(PageRequest.of(index, 1, Sort.by("id")))
+                .getContent()
+                .get(0);
     }
 
     private Song findByYoutubeVideoId(String youtubeVideoId) {
-        for (Song song : songs) {
-            if (song.getYoutubeVideoId().equals(youtubeVideoId)) {
-                return song;
-            }
-        }
-
-        throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Unknown YouTube video id");
+        return songRepository.findByYoutubeVideoId(youtubeVideoId)
+                .orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND, "Unknown YouTube video id"));
     }
 
     private String normalize(String value) {

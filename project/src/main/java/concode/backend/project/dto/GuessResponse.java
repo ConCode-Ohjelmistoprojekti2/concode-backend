@@ -4,16 +4,21 @@ public class GuessResponse {
 
     private boolean correctTitle;
     private boolean correctArtist;
+    private boolean correctGenre;
+    private boolean correctReleaseYear;
     private boolean complete;
     private AnswerResponse answer;
 
     public GuessResponse() {
     }
 
-    public GuessResponse(boolean correctTitle, boolean correctArtist, AnswerResponse answer) {
+    public GuessResponse(boolean correctTitle, boolean correctArtist, boolean correctGenre, boolean correctReleaseYear,
+            AnswerResponse answer) {
         this.correctTitle = correctTitle;
         this.correctArtist = correctArtist;
-        this.complete = correctTitle && correctArtist;
+        this.correctGenre = correctGenre;
+        this.correctReleaseYear = correctReleaseYear;
+        this.complete = correctTitle && correctArtist && correctGenre && correctReleaseYear;
         this.answer = answer;
     }
 
@@ -78,4 +83,21 @@ public class GuessResponse {
             this.artist = artist;
         }
     }
+
+    public boolean isCorrectGenre() {
+        return correctGenre;
+    }
+
+    public void setCorrectGenre(boolean correctGenre) {
+        this.correctGenre = correctGenre;
+    }
+
+    public boolean isCorrectReleaseYear() {
+        return correctReleaseYear;
+    }
+
+    public void setCorrectReleaseYear(boolean correctReleaseYear) {
+        this.correctReleaseYear = correctReleaseYear;
+    }
+
 }

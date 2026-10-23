@@ -1,6 +1,7 @@
 package concode.backend.project.dto;
 
 import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.NotNull;
 
 public class GuessRequest {
 
@@ -13,13 +14,22 @@ public class GuessRequest {
     @NotBlank
     private String artistGuess;
 
+    @NotBlank
+    String genreGuess;
+
+    @NotNull
+    Integer releaseYear;
+
     public GuessRequest() {
     }
 
-    public GuessRequest(String youtubeVideoId, String titleGuess, String artistGuess) {
+    public GuessRequest(String youtubeVideoId, String titleGuess, String artistGuess, String genreGuess,
+            Integer releaseYearGuess) {
         this.youtubeVideoId = youtubeVideoId;
         this.titleGuess = titleGuess;
         this.artistGuess = artistGuess;
+        this.genreGuess = genreGuess;
+        this.releaseYear = releaseYearGuess;
     }
 
     public String getYoutubeVideoId() {
@@ -44,5 +54,21 @@ public class GuessRequest {
 
     public void setArtistGuess(String artistGuess) {
         this.artistGuess = artistGuess;
+    }
+
+    public String getGenreGuess() {
+        return genreGuess;
+    }
+
+    public void setGenreGuess(String genreGuess) {
+        this.genreGuess = genreGuess;
+    }
+
+    public Integer getReleaseYear() {
+        return releaseYear;
+    }
+
+    public void setReleaseYear(Integer releaseYear) {
+        this.releaseYear = releaseYear;
     }
 }

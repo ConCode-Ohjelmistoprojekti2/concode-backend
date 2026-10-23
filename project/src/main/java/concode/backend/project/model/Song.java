@@ -15,14 +15,18 @@ public class Song {
     private String title;
     private String artist;
     private String youtubeVideoId;
+    private Integer releaseYear;
+    private String genre;
 
     public Song() {
     }
 
-    public Song(String title, String artist, String youtubeVideoId) {
+    public Song(String title, String artist, String youtubeVideoId, String genre, Integer releaseYear) {
         this.title = title;
         this.artist = artist;
         this.youtubeVideoId = youtubeVideoId;
+        this.genre = genre;
+        this.releaseYear = releaseYear;
     }
 
     public Long getId() {
@@ -52,4 +56,25 @@ public class Song {
     public void setYoutubeVideoId(String youtubeVideoId) {
         this.youtubeVideoId = youtubeVideoId;
     }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
+
+    public Integer getReleaseYear() {
+        return releaseYear;
+    }
+
+    public void setReleaseYear(Integer releaseYear) {
+        this.releaseYear = releaseYear;
+    }
+
+    public String getGenre() {
+        return genre;
+    }
+
+    public void setGenre(String gendre) {
+        this.genre = gendre;
+    }
+
 }
