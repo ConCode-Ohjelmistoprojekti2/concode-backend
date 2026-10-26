@@ -5,20 +5,20 @@ public class GuessResponse {
     private boolean correctTitle;
     private boolean correctArtist;
     private boolean correctGenre;
-    private boolean correctReleaseYear;
+    private boolean correctYear;
     private boolean complete;
     private AnswerResponse answer;
 
     public GuessResponse() {
     }
 
-    public GuessResponse(boolean correctTitle, boolean correctArtist, boolean correctGenre, boolean correctReleaseYear,
+    public GuessResponse(boolean correctTitle, boolean correctArtist,     boolean correctGenre, boolean correctYear,
             AnswerResponse answer) {
         this.correctTitle = correctTitle;
         this.correctArtist = correctArtist;
         this.correctGenre = correctGenre;
-        this.correctReleaseYear = correctReleaseYear;
-        this.complete = correctTitle && correctArtist && correctGenre && correctReleaseYear;
+            this.correctYear = correctYear;
+            this.complete = correctTitle && correctArtist && correctGenre && correctYear;
         this.answer = answer;
     }
 
@@ -58,13 +58,33 @@ public class GuessResponse {
 
         private String title;
         private String artist;
+        private Integer year;
+        private String genre;
 
         public AnswerResponse() {
         }
 
-        public AnswerResponse(String title, String artist) {
+        public AnswerResponse(String title, String artist, Integer year, String genre) {
             this.title = title;
             this.artist = artist;
+            this.year = year;
+            this.genre = genre;
+        }
+
+        public Integer getYear() {
+            return year;
+        }
+
+        public void setYear(Integer year) {
+            this.year = year;
+        }
+
+        public String getGenre() {
+            return genre;
+        }
+
+        public void setGenre(String genre) {
+            this.genre = genre;
         }
 
         public String getTitle() {
@@ -92,12 +112,12 @@ public class GuessResponse {
         this.correctGenre = correctGenre;
     }
 
-    public boolean isCorrectReleaseYear() {
-        return correctReleaseYear;
+    public boolean isCorrectYear() {
+        return correctYear;
     }
 
-    public void setCorrectReleaseYear(boolean correctReleaseYear) {
-        this.correctReleaseYear = correctReleaseYear;
+    public void setCorrectYear(boolean correctYear) {
+        this.correctYear = correctYear;
     }
 
 }

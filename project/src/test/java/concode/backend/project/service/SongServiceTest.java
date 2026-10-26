@@ -72,6 +72,6 @@ class SongServiceTest {
         assertTrue(response.isCorrectArtist());
         assertTrue(response.isComplete());
         assertTrue(response.isCorrectGenre());
-        assertTrue(response.isCorrectReleaseYear());
+        assertTrue(response.isCorrectYear());
     }
 }

@@ -48,18 +48,22 @@ public class SongService {
         boolean correctTitle = normalize(song.getTitle()).equals(normalize(guessRequest.getTitleGuess()));
         boolean correctArtist = normalize(song.getArtist()).equals(normalize(guessRequest.getArtistGuess()));
         boolean correctGenre = normalize(song.getGenre()).equals(normalize(guessRequest.getGenreGuess()));
-        boolean correctReleaseYear = song.getReleaseYear() != null
-                && song.getReleaseYear().equals(guessRequest.getReleaseYear());
+        boolean correctYear = song.getYear() != null
+                && song.getYear().equals(guessRequest.getYearGuess());
 
-        AnswerResponse answer = new AnswerResponse(song.getTitle(), song.getArtist());
+        AnswerResponse answer = new AnswerResponse(song.getTitle(), song.getArtist(), song.getYear(), song.getGenre());
 
-        return new GuessResponse(correctTitle, correctArtist, correctGenre, correctReleaseYear, answer);
+        GuessResponse response = new GuessResponse(correctTitle, correctArtist, correctGenre, correctYear, answer);
+        boolean genreOk = guessRequest.getGenreGuess() == null || correctGenre;
+        boolean yearOk = guessRequest.getYearGuess() == null || correctYear;
+        response.setComplete(correctTitle && correctArtist && genreOk && yearOk);
+        return response;
     }
 
     private ChallengeResponse toChallengeResponse(String type, String date, Song song) {
         return new ChallengeResponse(type, date, song.getYoutubeVideoId(),
                 song.getGenre(),
-                song.getReleaseYear());
+                song.getYear());
     }
 
     private Song getRandomSong() {

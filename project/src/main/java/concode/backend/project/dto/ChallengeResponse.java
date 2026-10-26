@@ -6,17 +6,17 @@ public class ChallengeResponse {
     private String date;
     private String youtubeVideoId;
     private String genre;
-    private Integer releaseYear;
+    private Integer year;
 
     public ChallengeResponse() {
     }
 
-    public ChallengeResponse(String type, String date, String youtubeVideoId, String genre, Integer releaseYear) {
+    public ChallengeResponse(String type, String date, String youtubeVideoId, String genre, Integer year) {
         this.type = type;
         this.date = date;
         this.youtubeVideoId = youtubeVideoId;
         this.genre = genre;
-        this.releaseYear = releaseYear;
+        this.year = year;
     }
 
     public String getType() {
@@ -51,12 +51,12 @@ public class ChallengeResponse {
         this.genre = genre;
     }
 
-    public Integer getReleaseYear() {
-        return releaseYear;
+    public Integer getYear() {
+        return year;
     }
 
-    public void setReleaseYear(Integer releaseYear) {
-        this.releaseYear = releaseYear;
+    public void setYear(Integer year) {
+        this.year = year;
     }
 
 }
