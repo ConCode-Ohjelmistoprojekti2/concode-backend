@@ -12,13 +12,13 @@ public class GuessResponse {
     public GuessResponse() {
     }
 
-    public GuessResponse(boolean correctTitle, boolean correctArtist, boolean correctYear,
-            boolean correctGenre, AnswerResponse answer) {
+    public GuessResponse(boolean correctTitle, boolean correctArtist, boolean correctGenre, boolean correctYear,
+            AnswerResponse answer) {
         this.correctTitle = correctTitle;
         this.correctArtist = correctArtist;
-        this.correctYear = correctYear;
         this.correctGenre = correctGenre;
-        this.complete = correctTitle && correctArtist && correctYear && correctGenre;
+        this.correctYear = correctYear;
+        this.complete = correctTitle && correctArtist && correctGenre && correctYear;
         this.answer = answer;
     }
 
@@ -119,4 +119,5 @@ public class GuessResponse {
             this.genre = genre;
         }
     }
+
 }
