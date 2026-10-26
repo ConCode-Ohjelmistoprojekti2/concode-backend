@@ -5,21 +5,38 @@ import static org.junit.jupiter.api.Assertions.assertNotNull;
 import static org.junit.jupiter.api.Assertions.assertNull;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
+import static org.mockito.ArgumentMatchers.any;
+import static org.mockito.Mockito.mock;
+import static org.mockito.Mockito.when;
+
+import java.util.List;
+import java.util.Optional;
+
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+import org.springframework.data.domain.PageImpl;
+import org.springframework.data.domain.Pageable;
 
 import concode.backend.project.dto.ChallengeResponse;
 import concode.backend.project.dto.GuessRequest;
 import concode.backend.project.dto.GuessResponse;
-import tools.jackson.databind.ObjectMapper;
+import concode.backend.project.model.Song;
+import concode.backend.project.repository.SongRepository;
 
 class SongServiceTest {
 
     private SongService songService;
 
     @BeforeEach
-    void setUp() throws Exception {
-        songService = new SongService(new ObjectMapper());
+    void setUp() {
+        SongRepository songRepository = mock(SongRepository.class);
+        Song song = new Song("Never Gonna Give You Up", "Rick Astley", "dQw4w9WgXcQ", "Pop", 1987);
+
+        when(songRepository.count()).thenReturn(1L);
+        when(songRepository.findAll(any(Pageable.class))).thenReturn(new PageImpl<>(List.of(song)));
+        when(songRepository.findByYoutubeVideoId("dQw4w9WgXcQ")).thenReturn(Optional.of(song));
+
+        songService = new SongService(songRepository);
     }
 
     @Test
@@ -45,12 +62,18 @@ class SongServiceTest {
         GuessRequest request = new GuessRequest(
                 "dQw4w9WgXcQ",
                 "Never Gonna Give You Up",
-                "Rick Astley");
+                "Rick Astley",
+                "pop",
+                1987);
 
         GuessResponse response = songService.checkGuess(request);
 
         assertTrue(response.isCorrectTitle());
         assertTrue(response.isCorrectArtist());
+        assertTrue(response.isCorrectYear());
+        assertTrue(response.isCorrectGenre());
         assertTrue(response.isComplete());
+        assertEquals(1987, response.getAnswer().getYear());
+        assertEquals("Pop", response.getAnswer().getGenre());
     }
 }
