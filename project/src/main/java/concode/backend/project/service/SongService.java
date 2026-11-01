@@ -1,7 +1,9 @@
 package concode.backend.project.service;
 
+import java.text.Normalizer;
 import java.time.LocalDate;
 import java.time.ZoneId;
+import java.util.Locale;
 import java.util.Random;
 
 import org.springframework.data.domain.PageRequest;
@@ -45,8 +47,8 @@ public class SongService {
     public GuessResponse checkGuess(GuessRequest guessRequest) {
         Song song = findByYoutubeVideoId(guessRequest.getYoutubeVideoId());
 
-        boolean correctTitle = normalize(song.getTitle()).equals(normalize(guessRequest.getTitleGuess()));
-        boolean correctArtist = normalize(song.getArtist()).equals(normalize(guessRequest.getArtistGuess()));
+        boolean correctTitle = matchesWithAllowedTypos(song.getTitle(), guessRequest.getTitleGuess());
+        boolean correctArtist = matchesWithAllowedTypos(song.getArtist(), guessRequest.getArtistGuess());
         boolean correctGenre = normalize(song.getGenre()).equals(normalize(guessRequest.getGenreGuess()));
         boolean correctYear = song.getYear() != null
                 && song.getYear().equals(guessRequest.getYearGuess());
@@ -98,6 +100,61 @@ public class SongService {
     }
 
     private String normalize(String value) {
-        return value == null ? "" : value.trim().toLowerCase();
+        if (value == null) {
+            return "";
+        }
+
+        return Normalizer.normalize(value, Normalizer.Form.NFD)
+                .replaceAll("\\p{M}", "")
+                .toLowerCase(Locale.ROOT)
+                .replaceAll("[^\\p{Alnum}\\s]", "")
+                .replaceAll("\\s+", " ")
+                .trim();
+    }
+
+    private boolean matchesWithAllowedTypos(String expected, String guess) {
+        String normalizedExpected = normalize(expected);
+        String normalizedGuess = normalize(guess);
+
+        if (normalizedExpected.equals(normalizedGuess)) {
+            return true;
+        }
+
+        return levenshteinDistance(normalizedExpected, normalizedGuess) <= allowedTypoCount(normalizedExpected.length());
+    }
+
+    private int allowedTypoCount(int answerLength) {
+        if (answerLength <= 4) {
+            return 0;
+        }
+        if (answerLength <= 8) {
+            return 1;
+        }
+        return 2;
+    }
+
+    private int levenshteinDistance(String first, String second) {
+        int[] previousRow = new int[second.length() + 1];
+        int[] currentRow = new int[second.length() + 1];
+
+        for (int column = 0; column <= second.length(); column++) {
+            previousRow[column] = column;
+        }
+
+        for (int row = 1; row <= first.length(); row++) {
+            currentRow[0] = row;
+            for (int column = 1; column <= second.length(); column++) {
+                int substitutionCost = first.charAt(row - 1) == second.charAt(column - 1) ? 0 : 1;
+                currentRow[column] = Math.min(
+                        Math.min(currentRow[column - 1] + 1, previousRow[column] + 1),
+                        previousRow[column - 1] + substitutionCost);
+            }
+
+            int[] completedRow = previousRow;
+            previousRow = currentRow;
+            currentRow = completedRow;
+        }
+
+        return previousRow[second.length()];
     }
 }

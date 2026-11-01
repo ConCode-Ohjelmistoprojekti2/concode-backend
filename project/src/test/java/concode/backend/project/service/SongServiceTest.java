@@ -1,6 +1,7 @@
 package concode.backend.project.service;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
 import static org.junit.jupiter.api.Assertions.assertNull;
 import static org.junit.jupiter.api.Assertions.assertTrue;
@@ -75,5 +76,52 @@ class SongServiceTest {
         assertTrue(response.isComplete());
         assertEquals(1987, response.getAnswer().getYear());
         assertEquals("Pop", response.getAnswer().getGenre());
+    }
+
+    @Test
+    void acceptsSmallTyposInLongTitleAndArtist() {
+        GuessRequest request = new GuessRequest(
+                "dQw4w9WgXcQ",
+                "Never Gonna Gave You Uq",
+                "Rick Astely",
+                "Pop",
+                1987);
+
+        GuessResponse response = songService.checkGuess(request);
+
+        assertTrue(response.isCorrectTitle());
+        assertTrue(response.isCorrectArtist());
+        assertTrue(response.isComplete());
+    }
+
+    @Test
+    void acceptsFormattingDifferencesBeforeCheckingTypos() {
+        GuessRequest request = new GuessRequest(
+                "dQw4w9WgXcQ",
+                "  NEVER, GONNA   GIVE YOU UP!  ",
+                "RICK ASTLEY",
+                "Pop",
+                1987);
+
+        GuessResponse response = songService.checkGuess(request);
+
+        assertTrue(response.isCorrectTitle());
+        assertTrue(response.isCorrectArtist());
+    }
+
+    @Test
+    void rejectsMoreTyposThanTheLimit() {
+        GuessRequest request = new GuessRequest(
+                "dQw4w9WgXcQ",
+                "Never Gonxa Gave You Uq",
+                "Rick Astley",
+                "Pop",
+                1987);
+
+        GuessResponse response = songService.checkGuess(request);
+
+        assertFalse(response.isCorrectTitle());
+        assertTrue(response.isCorrectArtist());
+        assertFalse(response.isComplete());
     }
 }
