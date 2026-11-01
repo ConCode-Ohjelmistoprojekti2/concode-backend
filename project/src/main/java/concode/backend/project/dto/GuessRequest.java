@@ -13,13 +13,29 @@ public class GuessRequest {
     @NotBlank
     private String artistGuess;
 
+    private Integer yearGuess;
+
+    private String genreGuess;
+
     public GuessRequest() {
     }
 
-    public GuessRequest(String youtubeVideoId, String titleGuess, String artistGuess) {
+    public GuessRequest(String youtubeVideoId, String titleGuess, String artistGuess, String genreGuess,
+            Integer yearGuess) {
         this.youtubeVideoId = youtubeVideoId;
         this.titleGuess = titleGuess;
         this.artistGuess = artistGuess;
+        this.genreGuess = genreGuess;
+        this.yearGuess = yearGuess;
+    }
+
+    public GuessRequest(String youtubeVideoId, String titleGuess, String artistGuess,
+            Integer yearGuess, String genreGuess) {
+        this.youtubeVideoId = youtubeVideoId;
+        this.titleGuess = titleGuess;
+        this.artistGuess = artistGuess;
+        this.yearGuess = yearGuess;
+        this.genreGuess = genreGuess;
     }
 
     public String getYoutubeVideoId() {
@@ -44,5 +60,21 @@ public class GuessRequest {
 
     public void setArtistGuess(String artistGuess) {
         this.artistGuess = artistGuess;
+    }
+
+    public Integer getYearGuess() {
+        return yearGuess;
+    }
+
+    public void setYearGuess(Integer yearGuess) {
+        this.yearGuess = yearGuess;
+    }
+
+    public String getGenreGuess() {
+        return genreGuess;
+    }
+
+    public void setGenreGuess(String genreGuess) {
+        this.genreGuess = genreGuess;
     }
 }
