@@ -61,8 +61,6 @@ Run all tests from the `project` directory:
 
 ## Deployment
 
-Rahti deployment: https://concode-backend-git-con-code.2.rahtiapp.fi/
-
 The frontend is deployed on Render and connected to this backend: [concode-frontend.onrender.com](https://concode-frontend.onrender.com). The backend can also be deployed as a Docker container using the included `project/Dockerfile`; it exposes port 8080.
 
 ```bash
@@ -75,4 +73,28 @@ docker run -p 8080:8080 music-video-game-backend
 
 The goal of the project is to create our own version of a music guessing game where the music video itself is an important part of the experience instead of only playing the song audio.
 
+## Database Model
 
+Con Code uses a PostgreSQL database hosted on Supabase. The database currently contains a `song` table that stores the music data used in the game.
+
+The table contains the song's title, artist, YouTube video ID, release year and genre. Each song has a unique primary key (`id`).
+
+The backend uses Spring Data JPA to retrieve songs from the database for Survival Mode and Daily Song challenges.
+
+### Entity Relationship Diagram
+
+```mermaid
+erDiagram
+    SONG {
+        BIGINT id PK
+        VARCHAR artist
+        VARCHAR title
+        VARCHAR youtube_video_id
+        INTEGER release_year
+        VARCHAR genre
+    }
+```
+
+Currently, the database contains only one application table, so there are no relationships between entities to illustrate.
+
+The database model may be expanded in future development to support user accounts, saved game results and leaderboards.
