@@ -59,6 +59,9 @@ Run all tests from the `project` directory:
 ./mvnw test
 ```
 
+## Swagger documentation
+Link: https://concode-backend-git-con-code.2.rahtiapp.fi/swagger-ui/index.html
+
 ## Deployment
 
 The frontend is deployed on Render and connected to this backend: [concode-frontend.onrender.com](https://concode-frontend.onrender.com). The backend can also be deployed as a Docker container using the included `project/Dockerfile`; it exposes port 8080.
