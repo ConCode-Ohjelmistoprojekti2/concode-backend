@@ -101,3 +101,55 @@ erDiagram
 Currently, the database contains only one application table, so there are no relationships between entities to illustrate.
 
 The database model may be expanded in future development to support user accounts, saved game results and leaderboards.
+
+## Leaderboards
+
+The backend includes a simple, anonymous leaderboard. The frontend calculates the score from the existing guess responses and sends the final total with a player name. 
+
+Before using it, run [`project/database/leaderboard.sql`](project/database/leaderboard.sql) once in the Supabase SQL Editor. In a local setup, Hibernate may create the `scores` table automatically because `spring.jpa.hibernate.ddl-auto=update` is enabled, but the SQL file also adds the leaderboard indexes.
+
+Submit a score after the game ends:
+
+```http
+POST /api/scores
+Content-Type: application/json
+
+{
+  "playerName": "Ada",
+  "score": 8,
+  "mode": "DAILY"
+}
+```
+
+`mode` can be `DAILY` or `RANDOM` (lowercase is also accepted). Daily scores are automatically saved for the current date in the Europe/Helsinki time zone.
+
+Read the top 10 scores:
+
+```text
+GET /api/scores/leaderboard/daily
+GET /api/scores/leaderboard/random
+``` 
+
+Con Code uses a PostgreSQL database hosted on Supabase. The database currently contains a `song` table that stores the music data used in the game.
+
+The table contains the song's title, artist, YouTube video ID, release year and genre. Each song has a unique primary key (`id`).
+
+The backend uses Spring Data JPA to retrieve songs from the database for Survival Mode and Daily Song challenges.
+
+### Entity Relationship Diagram
+
+```mermaid
+erDiagram
+    SONG {
+        BIGINT id PK
+        VARCHAR artist
+        VARCHAR title
+        VARCHAR youtube_video_id
+        INTEGER release_year
+        VARCHAR genre
+    }
+```
+
+Currently, the database contains only one application table, so there are no relationships between entities to illustrate.
+
+The database model may be expanded in future development to support user accounts, saved game results and leaderboards.
