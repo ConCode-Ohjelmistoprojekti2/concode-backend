@@ -7,6 +7,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import concode.backend.project.dto.ChallengeResponse;
 import concode.backend.project.service.SongService;
+import java.util.List;
 
 @RestController
 @RequestMapping("/api/songs")
@@ -22,5 +23,10 @@ public class SongController {
     @GetMapping("/random")
     public ChallengeResponse getRandomSong() {
         return songService.getRandomChallenge();
+    }
+
+    @GetMapping("/genres")
+    public List<String> getAllGenres() {
+        return songService.getAllGenres();
     }
 }

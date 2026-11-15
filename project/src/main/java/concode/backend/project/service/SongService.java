@@ -3,6 +3,7 @@ package concode.backend.project.service;
 import java.text.Normalizer;
 import java.time.LocalDate;
 import java.time.ZoneId;
+import java.util.List;
 import java.util.Locale;
 import java.util.Random;
 
@@ -60,6 +61,10 @@ public class SongService {
         boolean yearOk = guessRequest.getYearGuess() == null || correctYear;
         response.setComplete(correctTitle && correctArtist && genreOk && yearOk);
         return response;
+    }
+
+    public List<String> getAllGenres() {
+        return songRepository.findAllDistinctGenres();
     }
 
     private ChallengeResponse toChallengeResponse(String type, String date, Song song) {
@@ -120,7 +125,8 @@ public class SongService {
             return true;
         }
 
-        return levenshteinDistance(normalizedExpected, normalizedGuess) <= allowedTypoCount(normalizedExpected.length());
+        return levenshteinDistance(normalizedExpected,
+                normalizedGuess) <= allowedTypoCount(normalizedExpected.length());
     }
 
     private int allowedTypoCount(int answerLength) {
