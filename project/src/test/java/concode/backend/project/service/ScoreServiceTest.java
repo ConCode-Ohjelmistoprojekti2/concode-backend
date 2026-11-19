@@ -25,10 +25,12 @@ class ScoreServiceTest {
     void savesDailyScoreForToday() {
         ScoreRepository repository = mock(ScoreRepository.class);
         when(repository.save(any(Score.class))).thenAnswer(invocation -> invocation.getArgument(0));
-        ScoreService scoreService = new ScoreService(repository);
-        ScoreRequest request = request("Ada", 8, "daily");
+        ProfileService profiles = mock(ProfileService.class);
+        when(profiles.getUsername(any())).thenReturn("Ada");
+        ScoreService scoreService = new ScoreService(repository, profiles);
+        ScoreRequest request = request(8, "daily");
 
-        ScoreResponse response = scoreService.saveScore(request);
+        ScoreResponse response = scoreService.saveScore(request, java.util.UUID.randomUUID());
 
         assertEquals("Ada", response.getPlayerName());
         assertEquals(8, response.getScore());
@@ -38,10 +40,10 @@ class ScoreServiceTest {
     @Test
     void returnsDailyScoresForToday() {
         ScoreRepository repository = mock(ScoreRepository.class);
-        Score savedScore = new Score("Ada", 8, ScoreMode.DAILY, LocalDate.now());
+        Score savedScore = new Score(java.util.UUID.randomUUID(), "Ada", 8, ScoreMode.DAILY, LocalDate.now());
         when(repository.findTop10ByModeAndChallengeDateOrderByScoreDescCreatedAtAsc(
                 any(ScoreMode.class), any(LocalDate.class))).thenReturn(List.of(savedScore));
-        ScoreService scoreService = new ScoreService(repository);
+        ScoreService scoreService = new ScoreService(repository, mock(ProfileService.class));
 
         List<ScoreResponse> leaderboard = scoreService.getDailyLeaderboard();
 
@@ -51,14 +53,13 @@ class ScoreServiceTest {
 
     @Test
     void rejectsUnknownMode() {
-        ScoreService scoreService = new ScoreService(mock(ScoreRepository.class));
+        ScoreService scoreService = new ScoreService(mock(ScoreRepository.class), mock(ProfileService.class));
 
-        assertThrows(ResponseStatusException.class, () -> scoreService.saveScore(request("Ada", 8, "WEEKLY")));
+        assertThrows(ResponseStatusException.class, () -> scoreService.saveScore(request(8, "WEEKLY"), java.util.UUID.randomUUID()));
     }
 
-    private ScoreRequest request(String playerName, int score, String mode) {
+    private ScoreRequest request(int score, String mode) {
         ScoreRequest request = new ScoreRequest();
-        request.setPlayerName(playerName);
         request.setScore(score);
         request.setMode(mode);
         return request;

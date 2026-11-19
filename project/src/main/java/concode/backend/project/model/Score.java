@@ -2,6 +2,7 @@ package concode.backend.project.model;
 
 import java.time.LocalDate;
 import java.time.OffsetDateTime;
+import java.util.UUID;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
@@ -19,6 +20,9 @@ public class Score {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+
+    @Column
+    private UUID userId;
 
     @Column(nullable = false, length = 30)
     private String playerName;
@@ -38,7 +42,8 @@ public class Score {
     public Score() {
     }
 
-    public Score(String playerName, int score, ScoreMode mode, LocalDate challengeDate) {
+    public Score(UUID userId, String playerName, int score, ScoreMode mode, LocalDate challengeDate) {
+        this.userId = userId;
         this.playerName = playerName;
         this.score = score;
         this.mode = mode;
@@ -48,6 +53,10 @@ public class Score {
 
     public Long getId() {
         return id;
+    }
+
+    public UUID getUserId() {
+        return userId;
     }
 
     public String getPlayerName() {
