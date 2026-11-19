@@ -2,12 +2,13 @@ package concode.backend.project.controller;
 
 import java.util.List;
 
-import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.security.core.annotation.AuthenticationPrincipal;
+import org.springframework.security.oauth2.jwt.Jwt;
 
 import concode.backend.project.dto.ScoreRequest;
 import concode.backend.project.dto.ScoreResponse;
@@ -16,7 +17,6 @@ import jakarta.validation.Valid;
 
 @RestController
 @RequestMapping("/api/scores")
-@CrossOrigin(origins = "*")
 public class ScoreController {
 
     private final ScoreService scoreService;
@@ -26,8 +26,9 @@ public class ScoreController {
     }
 
     @PostMapping
-    public ScoreResponse saveScore(@Valid @RequestBody ScoreRequest request) {
-        return scoreService.saveScore(request);
+    public ScoreResponse saveScore(@Valid @RequestBody ScoreRequest request,
+            @AuthenticationPrincipal Jwt jwt) {
+        return scoreService.saveScore(request, java.util.UUID.fromString(jwt.getSubject()));
     }
 
     @GetMapping("/leaderboard/daily")

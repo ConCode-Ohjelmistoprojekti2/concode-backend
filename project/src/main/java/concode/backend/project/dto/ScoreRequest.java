@@ -3,13 +3,8 @@ package concode.backend.project.dto;
 import jakarta.validation.constraints.Min;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
-import jakarta.validation.constraints.Size;
 
 public class ScoreRequest {
-
-    @NotBlank
-    @Size(max = 30)
-    private String playerName;
 
     @NotNull
     @Min(0)
@@ -17,14 +12,6 @@ public class ScoreRequest {
 
     @NotBlank
     private String mode;
-
-    public String getPlayerName() {
-        return playerName;
-    }
-
-    public void setPlayerName(String playerName) {
-        this.playerName = playerName;
-    }
 
     public Integer getScore() {
         return score;

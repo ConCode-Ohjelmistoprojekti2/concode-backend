@@ -1,0 +1,9 @@
+# Local-only configuration. Copy this file to application-local.properties and
+# replace every placeholder. Never commit application-local.properties.
+DB_URL=jdbc:postgresql://your-project.pooler.supabase.com:6543/postgres?sslmode=require&prepareThreshold=0
+DB_USERNAME=postgres.your-project-ref
+DB_PASSWORD=your-database-password
+
+SUPABASE_JWT_ISSUER=https://your-project-ref.supabase.co/auth/v1
+SUPABASE_JWT_JWK_SET_URI=https://your-project-ref.supabase.co/auth/v1/.well-known/jwks.json
+APP_ALLOWED_ORIGINS=http://localhost:5173

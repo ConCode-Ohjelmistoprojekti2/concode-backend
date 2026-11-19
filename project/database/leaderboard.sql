@@ -13,3 +13,19 @@ CREATE INDEX IF NOT EXISTS scores_daily_leaderboard_idx
 
 CREATE INDEX IF NOT EXISTS scores_random_leaderboard_idx
     ON scores (mode, score DESC, created_at ASC);
+
+
+CREATE TABLE IF NOT EXISTS profiles (
+    id UUID PRIMARY KEY REFERENCES auth.users(id) ON DELETE CASCADE,
+    username VARCHAR(30) NOT NULL,
+    created_at TIMESTAMP WITH TIME ZONE NOT NULL DEFAULT CURRENT_TIMESTAMP
+);
+
+CREATE UNIQUE INDEX IF NOT EXISTS profiles_username_lower_unique
+    ON profiles (LOWER(username));
+
+ALTER TABLE scores ADD COLUMN IF NOT EXISTS user_id UUID REFERENCES auth.users(id) ON DELETE CASCADE;
+
+CREATE UNIQUE INDEX IF NOT EXISTS scores_one_run_per_user_per_day_idx
+    ON scores (user_id, mode, challenge_date)
+    WHERE user_id IS NOT NULL;
