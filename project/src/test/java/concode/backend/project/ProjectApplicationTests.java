@@ -7,6 +7,7 @@ import org.springframework.test.context.bean.override.mockito.MockitoBean;
 
 import concode.backend.project.repository.SongRepository;
 import concode.backend.project.repository.ScoreRepository;
+import concode.backend.project.repository.ProfileRepository;
 
 @SpringBootTest(properties = {
 		"spring.autoconfigure.exclude="
@@ -21,6 +22,9 @@ class ProjectApplicationTests {
 
 	@MockitoBean
 	private ScoreRepository scoreRepository;
+
+	@MockitoBean
+	private ProfileRepository profileRepository;
 
 	@Test
 	void contextLoads() {

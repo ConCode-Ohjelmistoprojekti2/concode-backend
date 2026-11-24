@@ -130,6 +130,37 @@ GET /api/scores/leaderboard/daily
 GET /api/scores/leaderboard/random
 ``` 
 
+## Accounts and authenticated scores
+
+Players can create an account with a username, email address, and password. They can play without signing in, but signing in is required to save a score. The username is the public leaderboard name; email addresses are never returned by the leaderboard API.
+
+Each account can save one score per mode per Europe/Helsinki day. Daily scores therefore have one entry per player for that challenge, and the Survival leaderboard selects each player's best saved Survival score.
+
+### Supabase setup
+
+1. In the existing Supabase project, open **Authentication → Sign In / Providers → Email** and enable Email. Keep **Confirm email** enabled for a real deployment.
+2. In **Authentication → URL Configuration**, set the Site URL to the deployed frontend URL. Add the deployed frontend URL and `http://localhost:5173` to Redirect URLs. This is required for confirmation and password-reset links.
+3. Run [`project/database/leaderboard.sql`](project/database/leaderboard.sql) in the Supabase SQL Editor. It creates the public `profiles` table and links scores to `auth.users`.
+4. Create the frontend environment file from the values in **Project Settings → API**:
+
+   ```dotenv
+   VITE_BACKEND_URL=https://your-backend.example
+   VITE_SUPABASE_URL=https://your-project-ref.supabase.co
+   VITE_SUPABASE_PUBLISHABLE_KEY=your-publishable-key
+   ```
+
+5. Configure the backend deployment environment:
+
+   ```dotenv
+   SUPABASE_JWT_ISSUER=https://your-project-ref.supabase.co/auth/v1
+   SUPABASE_JWT_JWK_SET_URI=https://your-project-ref.supabase.co/auth/v1/.well-known/jwks.json
+   APP_ALLOWED_ORIGINS=https://your-frontend.example,http://localhost:5173
+   ```
+
+   The Supabase project must use asymmetric JWT signing keys, so the backend can validate tokens using its public JWKS endpoint. Never place a Supabase service-role key, database password, or JWT signing key in a Vite variable.
+
+6. Configure custom SMTP before public launch. Supabase's supplied email sender is for development only and is severely rate-limited; confirmation and reset emails require a production email sender.
+
 Con Code uses a PostgreSQL database hosted on Supabase. The database currently contains a `song` table that stores the music data used in the game.
 
 The table contains the song's title, artist, YouTube video ID, release year and genre. Each song has a unique primary key (`id`).
