@@ -1,13 +1,14 @@
 package concode.backend.project.dto;
 
 import java.time.OffsetDateTime;
+import java.math.BigDecimal;
 
 import concode.backend.project.model.Score;
 
 public class ScoreResponse {
 
     private String playerName;
-    private int score;
+    private BigDecimal score;
     private OffsetDateTime createdAt;
 
     public ScoreResponse(Score score) {
@@ -20,7 +21,7 @@ public class ScoreResponse {
         return playerName;
     }
 
-    public int getScore() {
+    public BigDecimal getScore() {
         return score;
     }
 

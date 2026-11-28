@@ -1,5 +1,8 @@
 package concode.backend.project.dto;
 
+import java.math.BigDecimal;
+
+import jakarta.validation.constraints.Digits;
 import jakarta.validation.constraints.Min;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
@@ -8,16 +11,17 @@ public class ScoreRequest {
 
     @NotNull
     @Min(0)
-    private Integer score;
+    @Digits(integer = 8, fraction = 2)
+    private BigDecimal score;
 
     @NotBlank
     private String mode;
 
-    public Integer getScore() {
+    public BigDecimal getScore() {
         return score;
     }
 
-    public void setScore(Integer score) {
+    public void setScore(BigDecimal score) {
         this.score = score;
     }
 

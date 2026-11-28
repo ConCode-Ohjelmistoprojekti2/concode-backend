@@ -2,6 +2,7 @@ package concode.backend.project.model;
 
 import java.time.LocalDate;
 import java.time.OffsetDateTime;
+import java.math.BigDecimal;
 import java.util.UUID;
 
 import jakarta.persistence.Column;
@@ -27,8 +28,8 @@ public class Score {
     @Column(nullable = false, length = 30)
     private String playerName;
 
-    @Column(nullable = false)
-    private int score;
+    @Column(nullable = false, precision = 10, scale = 2)
+    private BigDecimal score;
 
     @Enumerated(EnumType.STRING)
     @Column(nullable = false, length = 10)
@@ -42,7 +43,7 @@ public class Score {
     public Score() {
     }
 
-    public Score(UUID userId, String playerName, int score, ScoreMode mode, LocalDate challengeDate) {
+    public Score(UUID userId, String playerName, BigDecimal score, ScoreMode mode, LocalDate challengeDate) {
         this.userId = userId;
         this.playerName = playerName;
         this.score = score;
@@ -63,7 +64,7 @@ public class Score {
         return playerName;
     }
 
-    public int getScore() {
+    public BigDecimal getScore() {
         return score;
     }
 
